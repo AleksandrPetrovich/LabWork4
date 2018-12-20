@@ -33,5 +33,19 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Interfaces\ICargo.cs" />
+    <Compile Include="Interfaces\IFuel.cs" />
+    <Compile Include="Interfaces\IPort.cs" />
+    <Compile Include="Interfaces\IRoute.cs" />
+    <Compile Include="Interfaces\IShip.cs" />
+    <Compile Include="Model\Cargo.cs" />
+    <Compile Include="Model\Fuel.cs" />
+    <Compile Include="Model\Port.cs" />
+    <Compile Include="Model\Ship.cs" />
+    <Compile Include="Model\Route.cs" />
+    <Compile Include="Test.cs" />
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
