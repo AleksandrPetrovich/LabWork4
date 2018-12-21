@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Port.Interfaces;
 
 namespace Port.Model
@@ -14,7 +15,7 @@ namespace Port.Model
 
         public void Send()
         {
-            if (Route != null && Route.PortOfArrival != Port && Fuel != null)
+            if (Ready())
             {
                 Port.ShipDepartures(this);
                 Route.AddPortOfDeparture(Port);
@@ -43,6 +44,7 @@ namespace Port.Model
         {
             if (Route != null)
             {
+                Route.Sum((from cargo in Cargos select cargo.Cost).Sum());
                 Routes.Add(Route);
                 Route = null;
             }
@@ -53,11 +55,18 @@ namespace Port.Model
             Fuel = fuel;
         }
 
+        public bool Ready()
+        {
+            return Route != null && Route.PortOfArrival != Port && Fuel != null;
+        }
+
         public Ship(string title, IPort port)
         {
             Title = title;
             Port = port;
-            //Port.ShipArrives(this);
+            Routes = new List<IRoute>();
+            Cargos = new List<ICargo>();
+            Port.ShipArrives(this);
         }
     }
 }

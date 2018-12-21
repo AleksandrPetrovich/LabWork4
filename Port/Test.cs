@@ -1,5 +1,4 @@
 ﻿using System;
-using Port.Interfaces;
 using Port.Model;
 
 namespace Port
@@ -17,14 +16,14 @@ namespace Port
             var diesel = new Fuel(50);
 
             Console.WriteLine("Создаём грузы");
-            var cargo1 = new Cargo(10000);
-            var cargo2 = new Cargo(12000);
-            var cargo3 = new Cargo(35000);
-            var cargo4 = new Cargo(16000);
-            var cargo5 = new Cargo(14000);
-            var cargo6 = new Cargo(17000);
-            var cargo7 = new Cargo(15000);
-            var cargo8 = new Cargo(15000);
+            var cargo1 = new Cargo(100000);
+            var cargo2 = new Cargo(120000);
+            var cargo3 = new Cargo(350000);
+            var cargo4 = new Cargo(160000);
+            var cargo5 = new Cargo(140000);
+            var cargo6 = new Cargo(170000);
+            var cargo7 = new Cargo(150000);
+            var cargo8 = new Cargo(150000);
 
             Console.WriteLine("Создаём корабль Труженник");
             var worker = new Ship("Труженник", novorossiysk);
@@ -41,7 +40,17 @@ namespace Port
             Console.WriteLine("Отправляем Труженника по маршруту");
             worker.Send();
             Console.WriteLine("Проверяем какие корабли находятся в порту Усть-Луга");
-            Console.WriteLine(ustluga.InPort.ToString());
+            foreach(var s in ustluga.InPort)
+            {
+                Console.WriteLine(s.Title);
+            }
+            Console.WriteLine("Выводим стоимости маршрутов корабля Труженник");
+            foreach (var r in worker.Routes)
+            {
+                Console.WriteLine($"{r.PortOfDeparture.Title}-{r.PortOfArrival.Title} стоимость {r.Costs}");
+                Console.WriteLine($"Стоимость грузов {r.Sums}");
+            }
+
 
             Console.WriteLine("Создаём корабль Большой");
             var big = new Ship("Большой", ustluga);
@@ -57,8 +66,17 @@ namespace Port
             big.AddRoute(routeForBig);
             Console.WriteLine("Отправляем Большого по маршруту");
             big.Send();
-            Console.WriteLine("Проверяем какие корабли находятся в порту Новороссийск");
-            Console.WriteLine(novorossiysk.InPort.ToString());
+            Console.WriteLine("Проверяем какие корабли находятся в порту Новороссийск");            
+            foreach (var s in novorossiysk.InPort)
+            {
+                Console.WriteLine(s.Title);
+            }
+            Console.WriteLine("Выводим стоимости маршрутов корабля Большой");
+            foreach (var r in big.Routes)
+            {
+                Console.WriteLine($"{r.PortOfDeparture.Title}-{r.PortOfArrival.Title} стоимость {r.Costs}");
+                Console.WriteLine($"Стоимость грузов {r.Sums}");
+            }
         }
     }
 }

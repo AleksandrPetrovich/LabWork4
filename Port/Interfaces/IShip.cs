@@ -9,7 +9,7 @@ namespace Port.Interfaces
         IFuel Fuel { get; set; }
         IRoute Route { get; set; }
         List<IRoute> Routes { get; set; }
-        List<ICargo> Cargos { get; set; }
+        List<ICargo> Cargos { get; set; }        
 
         void Load(ICargo cargo);
         void Unload();
@@ -17,5 +17,6 @@ namespace Port.Interfaces
         void AddRoute(IRoute route);
         void RemoveRoute();
         void Fill(IFuel fuel);
+        bool Ready();
     }
 }

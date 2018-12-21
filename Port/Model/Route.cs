@@ -8,6 +8,7 @@ namespace Port.Model
         public IPort PortOfArrival { get; set; }
         public IPort PortOfDeparture { get; set; }
         public double Costs { get; set; }
+        public double Sums { get; set; }
 
         public void Cost(IFuel fuel)
         {
@@ -22,6 +23,11 @@ namespace Port.Model
         public void AddPortOfDeparture(IPort port)
         {
             PortOfDeparture = port;
+        }
+
+        public void Sum(double sum)
+        {
+            Sums = sum;
         }
 
         public Route(IPort portOfArrival)

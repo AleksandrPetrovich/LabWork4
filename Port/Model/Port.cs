@@ -13,9 +13,9 @@ namespace Port.Model
 
         public void Unload(IShip ship)
         {
-            if (ship.Cargos != null)
-            {
-               Thread.Sleep(5000);
+            if (ship.Cargos.Count != 0)
+            {                
+                Thread.Sleep(500);
                 ship.Unload();
             }
             if (OnUnloading.Contains(ship))
@@ -29,6 +29,7 @@ namespace Port.Model
         {
             OnUnloading.Add(ship);
             ship.RemoveRoute();
+            Unload(ship);
         }
 
         public void ShipDepartures(IShip ship)
@@ -37,10 +38,20 @@ namespace Port.Model
                 InPort.Remove(ship);
         }
 
-        public Port (string title, double coordinate)
+        public Port(string title, double coordinate)
         {
             Title = title;
             Coordinate = coordinate;
+            InPort = new List<IShip>();
+            OnUnloading = new List<IShip>();
+        }
+
+        public Port()
+        {
+            Title = "No name";
+            Coordinate = 0;
+            InPort = new List<IShip>();
+            OnUnloading = new List<IShip>();
         }
     }
 }
