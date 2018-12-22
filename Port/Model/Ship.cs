@@ -9,8 +9,8 @@ namespace Port.Model
         public string Title { get; set; }
         public IPort Port { get; set; }
         public IRoute Route { get; set; }
-        public List<IRoute> Routes { get; set; }
-        public List<ICargo> Cargos { get; set; }
+        public ICollection<IRoute> Routes { get; set; }
+        public ICollection<ICargo> Cargos { get; set; }
         public IFuel Fuel { get; set; }
 
         public void Send()
@@ -18,8 +18,8 @@ namespace Port.Model
             if (Ready())
             {
                 Port.ShipDepartures(this);
-                Route.AddPortOfDeparture(Port);
-                Port = Route.PortOfArrival;
+                Route.SetDeparture(Port);
+                Port = Route.Arrival;
                 Route.Cost(Fuel);
                 Port.ShipArrives(this);
             }
@@ -35,7 +35,7 @@ namespace Port.Model
             Cargos.Clear();
         }
 
-        public void AddRoute(IRoute route)
+        public void SetRoute(IRoute route)
         {
             Route = route;
         }
@@ -57,7 +57,7 @@ namespace Port.Model
 
         public bool Ready()
         {
-            return Route != null && Route.PortOfArrival != Port && Fuel != null;
+            return Route != null && Route.Arrival != Port && Fuel != null;
         }
 
         public Ship(string title, IPort port)

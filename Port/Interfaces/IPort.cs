@@ -6,8 +6,8 @@ namespace Port.Interfaces
     {
         string Title { get; set; }
         double Coordinate { get; set; }
-        List<IShip> InPort { get; set; }
-        List<IShip> OnUnloading { get; set; }
+        ICollection<IShip> InPort { get; set; }
+        ICollection<IShip> OnUnloading { get; set; }
 
         void Unload(IShip ship);
         void ShipArrives(IShip ship);

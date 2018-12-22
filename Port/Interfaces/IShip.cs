@@ -8,13 +8,13 @@ namespace Port.Interfaces
         IPort Port { get; set; }
         IFuel Fuel { get; set; }
         IRoute Route { get; set; }
-        List<IRoute> Routes { get; set; }
-        List<ICargo> Cargos { get; set; }        
+        ICollection<IRoute> Routes { get; set; }
+        ICollection<ICargo> Cargos { get; set; }        
 
         void Load(ICargo cargo);
         void Unload();
         void Send();        
-        void AddRoute(IRoute route);
+        void SetRoute(IRoute route);
         void RemoveRoute();
         void Fill(IFuel fuel);
         bool Ready();

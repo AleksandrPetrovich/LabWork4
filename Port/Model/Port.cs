@@ -8,8 +8,8 @@ namespace Port.Model
     {
         public string Title { get; set; }
         public double Coordinate { get; set; }
-        public List<IShip> InPort { get; set; }
-        public List<IShip> OnUnloading { get; set; }
+        public ICollection<IShip> InPort { get; set; }
+        public ICollection<IShip> OnUnloading { get; set; }
 
         public void Unload(IShip ship)
         {

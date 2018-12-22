@@ -5,8 +5,8 @@ namespace Port.Model
 {
     class Route : IRoute
     {
-        public IPort PortOfArrival { get; set; }
-        public IPort PortOfDeparture { get; set; }
+        public IPort Arrival { get; set; }
+        public IPort Departure { get; set; }
         public double Costs { get; set; }
         public double Sums { get; set; }
 
@@ -17,12 +17,12 @@ namespace Port.Model
 
         public double Way()
         {
-            return Math.Abs(PortOfArrival.Coordinate - PortOfDeparture.Coordinate);
+            return Math.Abs(Arrival.Coordinate - Departure.Coordinate);
         }
 
-        public void AddPortOfDeparture(IPort port)
+        public void SetDeparture(IPort port)
         {
-            PortOfDeparture = port;
+            Departure = port;
         }
 
         public void Sum(double sum)
@@ -30,9 +30,9 @@ namespace Port.Model
             Sums = sum;
         }
 
-        public Route(IPort portOfArrival)
+        public Route(IPort arrival)
         {
-            PortOfArrival = portOfArrival;
+            Arrival = arrival;
         }
     }
 }

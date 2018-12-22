@@ -36,7 +36,7 @@ namespace Port
             worker.Load(cargo4);
             Console.WriteLine("Создаём маршрут для Труженника");
             var routeForWorker = new Route(ustluga);
-            worker.AddRoute(routeForWorker);
+            worker.SetRoute(routeForWorker);
             Console.WriteLine("Отправляем Труженника по маршруту");
             worker.Send();
             Console.WriteLine("Проверяем какие корабли находятся в порту Усть-Луга");
@@ -47,7 +47,7 @@ namespace Port
             Console.WriteLine("Выводим стоимости маршрутов корабля Труженник");
             foreach (var r in worker.Routes)
             {
-                Console.WriteLine($"{r.PortOfDeparture.Title}-{r.PortOfArrival.Title} стоимость {r.Costs}");
+                Console.WriteLine($"{r.Departure.Title}-{r.Arrival.Title} стоимость {r.Costs}");
                 Console.WriteLine($"Стоимость грузов {r.Sums}");
             }
 
@@ -63,7 +63,7 @@ namespace Port
             big.Load(cargo8);
             Console.WriteLine("Создаём маршрут для Большого");
             var routeForBig = new Route(novorossiysk);
-            big.AddRoute(routeForBig);
+            big.SetRoute(routeForBig);
             Console.WriteLine("Отправляем Большого по маршруту");
             big.Send();
             Console.WriteLine("Проверяем какие корабли находятся в порту Новороссийск");            
@@ -74,7 +74,7 @@ namespace Port
             Console.WriteLine("Выводим стоимости маршрутов корабля Большой");
             foreach (var r in big.Routes)
             {
-                Console.WriteLine($"{r.PortOfDeparture.Title}-{r.PortOfArrival.Title} стоимость {r.Costs}");
+                Console.WriteLine($"{r.Departure.Title}-{r.Arrival.Title} стоимость {r.Costs}");
                 Console.WriteLine($"Стоимость грузов {r.Sums}");
             }
         }
