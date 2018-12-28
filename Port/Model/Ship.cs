@@ -4,7 +4,7 @@ using Port.Interfaces;
 
 namespace Port.Model
 {
-    class Ship : IShip
+    public class Ship : IShip
     {
         public string Title { get; set; }
         public IPort Port { get; set; }

@@ -1,6 +1,6 @@
 ﻿namespace Port.Interfaces
 {
-    interface IRoute
+    public interface IRoute
     {
         IPort Arrival { get; set; }
         IPort Departure { get; set; }

@@ -2,7 +2,7 @@
 
 namespace Port.Model
 {
-    class Fuel : IFuel
+    public class Fuel : IFuel
     {
         public double Cost { get; set; }
 

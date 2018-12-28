@@ -3,7 +3,7 @@ using Port.Model;
 
 namespace Port
 {
-    class Test
+    public class Test
     {
         static void Main(string[] args)
         {

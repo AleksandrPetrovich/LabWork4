@@ -2,7 +2,7 @@
 
 namespace Port.Interfaces
 {
-    interface IShip
+    public interface IShip
     {
         string Title { get; set; }
         IPort Port { get; set; }

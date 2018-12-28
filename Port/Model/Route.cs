@@ -3,7 +3,7 @@ using Port.Interfaces;
 
 namespace Port.Model
 {
-    class Route : IRoute
+    public class Route : IRoute
     {
         public IPort Arrival { get; set; }
         public IPort Departure { get; set; }

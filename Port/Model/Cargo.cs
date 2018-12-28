@@ -2,7 +2,7 @@
 
 namespace Port.Model
 {
-    class Cargo : ICargo
+    public class Cargo : ICargo
     {
         public double Cost { get; set; }
 

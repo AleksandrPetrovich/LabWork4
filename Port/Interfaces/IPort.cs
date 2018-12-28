@@ -2,7 +2,7 @@
 
 namespace Port.Interfaces
 {
-    interface IPort
+    public interface IPort
     {
         string Title { get; set; }
         double Coordinate { get; set; }

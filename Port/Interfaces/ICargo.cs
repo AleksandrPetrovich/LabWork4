@@ -1,6 +1,6 @@
 ﻿namespace Port.Interfaces
 {
-    interface ICargo
+    public interface ICargo
     {
         double Cost { get; set; }
     }

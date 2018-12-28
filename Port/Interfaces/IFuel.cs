@@ -1,6 +1,6 @@
 ﻿namespace Port.Interfaces
 {
-    interface IFuel
+    public interface IFuel
     {
         double Cost { get; set; }
     }

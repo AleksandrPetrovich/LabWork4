@@ -4,7 +4,7 @@ using Port.Interfaces;
 
 namespace Port.Model
 {
-    class Port : IPort
+    public class Port : IPort
     {
         public string Title { get; set; }
         public double Coordinate { get; set; }
