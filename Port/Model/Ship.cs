@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Port.Interfaces;
 
@@ -22,6 +23,10 @@ namespace Port.Model
                 Port = Route.Arrival;
                 Route.Cost(Fuel);
                 Port.ShipArrives(this);
+            }
+            else
+            {
+                throw new InvalidOperationException("Корабль не готов к отплытию!");
             }
         }        
 

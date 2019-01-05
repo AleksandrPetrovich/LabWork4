@@ -38,24 +38,30 @@ namespace Port
             var routeForWorker = new Route(ustluga);
             worker.SetRoute(routeForWorker);
             Console.WriteLine("Отправляем Труженника по маршруту");
-            worker.Send();
-            Console.WriteLine("Проверяем какие корабли находятся в порту Усть-Луга");
-            foreach(var s in ustluga.InPort)
+            try
             {
-                Console.WriteLine(s.Title);
+                worker.Send();
+                Console.WriteLine("Проверяем какие корабли находятся в порту Усть-Луга");
+                foreach (var s in ustluga.InPort)
+                {
+                    Console.WriteLine(s.Title);
+                }
+                Console.WriteLine("Выводим стоимости маршрутов корабля Труженник");
+                foreach (var r in worker.Routes)
+                {
+                    Console.WriteLine($"{r.Departure.Title}-{r.Arrival.Title} стоимость {r.Costs}");
+                    Console.WriteLine($"Стоимость грузов {r.Sums}");
+                }
             }
-            Console.WriteLine("Выводим стоимости маршрутов корабля Труженник");
-            foreach (var r in worker.Routes)
+            catch (InvalidOperationException ex)
             {
-                Console.WriteLine($"{r.Departure.Title}-{r.Arrival.Title} стоимость {r.Costs}");
-                Console.WriteLine($"Стоимость грузов {r.Sums}");
+                Console.WriteLine(ex.Message);
             }
-
 
             Console.WriteLine("Создаём корабль Большой");
             var big = new Ship("Большой", ustluga);
-            Console.WriteLine("Заправляем Большого");
-            big.Fill(diesel);
+            /*Console.WriteLine("Заправляем Большого");
+            big.Fill(diesel);*/
             Console.WriteLine("Загружаем Большого");
             big.Load(cargo5);
             big.Load(cargo6);
@@ -64,19 +70,26 @@ namespace Port
             Console.WriteLine("Создаём маршрут для Большого");
             var routeForBig = new Route(novorossiysk);
             big.SetRoute(routeForBig);
-            Console.WriteLine("Отправляем Большого по маршруту");
-            big.Send();
-            Console.WriteLine("Проверяем какие корабли находятся в порту Новороссийск");            
-            foreach (var s in novorossiysk.InPort)
+            Console.WriteLine("Отправляем Большого по маршруту");            
+            try
             {
-                Console.WriteLine(s.Title);
+                big.Send();
+                Console.WriteLine("Проверяем какие корабли находятся в порту Новороссийск");
+                foreach (var s in novorossiysk.InPort)
+                {
+                    Console.WriteLine(s.Title);
+                }
+                Console.WriteLine("Выводим стоимости маршрутов корабля Большой");
+                foreach (var r in big.Routes)
+                {
+                    Console.WriteLine($"{r.Departure.Title}-{r.Arrival.Title} стоимость {r.Costs}");
+                    Console.WriteLine($"Стоимость грузов {r.Sums}");
+                }
             }
-            Console.WriteLine("Выводим стоимости маршрутов корабля Большой");
-            foreach (var r in big.Routes)
+            catch (InvalidOperationException ex)
             {
-                Console.WriteLine($"{r.Departure.Title}-{r.Arrival.Title} стоимость {r.Costs}");
-                Console.WriteLine($"Стоимость грузов {r.Sums}");
-            }
+                Console.WriteLine(ex.Message);
+            }            
         }
     }
 }
