@@ -1,5 +1,7 @@
 ﻿using System;
 using Port.Model;
+using System.IO;
+using System.Xml.Serialization;
 
 namespace Port
 {
@@ -89,7 +91,24 @@ namespace Port
             catch (InvalidOperationException ex)
             {
                 Console.WriteLine(ex.Message);
-            }            
+            }
+
+            XmlSerializer formatter = new XmlSerializer(typeof(Fuel));
+            
+            using (FileStream fs = new FileStream("fuel.xml", FileMode.OpenOrCreate))
+            {
+                formatter.Serialize(fs, diesel);
+
+                Console.WriteLine("Объект сериализован");
+            }
+                       
+            using (FileStream fs = new FileStream("fuel.xml", FileMode.OpenOrCreate))
+            {
+                Fuel newDiesel = (Fuel)formatter.Deserialize(fs);
+
+                Console.WriteLine("Объект десериализован");
+                Console.WriteLine("Цена: {0}", newDiesel.Cost);
+            }
         }
     }
 }
