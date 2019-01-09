@@ -2,6 +2,7 @@
 using Port.Model;
 using System.IO;
 using System.Xml.Serialization;
+using System.Runtime.Serialization.Formatters.Binary;
 
 namespace Port
 {
@@ -108,6 +109,23 @@ namespace Port
 
                 Console.WriteLine("Объект десериализован");
                 Console.WriteLine("Цена: {0}", newDiesel.Cost);
+            }
+
+            BinaryFormatter bformatter = new BinaryFormatter();
+            
+            using (FileStream fs = new FileStream("ship.dat", FileMode.OpenOrCreate))
+            {
+                bformatter.Serialize(fs, worker);
+
+                Console.WriteLine("Объект сериализован");
+            }
+
+            using (FileStream fs = new FileStream("ship.dat", FileMode.OpenOrCreate))
+            {
+                Ship newWorker = (Ship)bformatter.Deserialize(fs);
+
+                Console.WriteLine("Объект десериализован");
+                Console.WriteLine("Название корабля: {0}, порт: {1}", newWorker.Title, newWorker.Port.Title);
             }
         }
     }

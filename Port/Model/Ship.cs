@@ -5,6 +5,7 @@ using Port.Interfaces;
 
 namespace Port.Model
 {
+    [Serializable]
     public class Ship : IShip
     {
         public string Title { get; set; }
@@ -63,6 +64,14 @@ namespace Port.Model
         public bool Ready()
         {
             return Route != null && Route.Arrival != Port && Fuel != null;
+        }
+
+        public Ship()
+        {
+            Title = "";
+            Port = null;
+            Routes = new List<IRoute>();
+            Cargos = new List<ICargo>();            
         }
 
         public Ship(string title, IPort port)

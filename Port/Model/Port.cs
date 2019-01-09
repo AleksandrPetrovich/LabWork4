@@ -1,9 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading;
 using Port.Interfaces;
 
 namespace Port.Model
 {
+    [Serializable]
     public class Port : IPort
     {
         public string Title { get; set; }
